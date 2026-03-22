@@ -1,0 +1,10 @@
+.movie-card {
+    max-width: 300px;
+    max-height: auto;
+    border: 1px solid black;
+    margin: 10px;
+}
+.movie-img {
+    width: 250px;
+    height: 400px;
+}

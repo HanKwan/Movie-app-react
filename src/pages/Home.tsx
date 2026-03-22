@@ -3,8 +3,8 @@ import MovieCard from "../components/MovieCard"
 function Home() {
     
     const movies = [
-        {id: 1, title: "Ghost Rider"},
-        {id: 2, title: "Harry Potter"}
+        {id: 1, title: "Ghost Rider", release_date: "1998"},
+        {id: 2, title: "Harry Potter", release_date: "1980"}
     ]
 
     return(
