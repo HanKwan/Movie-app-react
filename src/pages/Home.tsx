@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import MovieCard from "../components/MovieCard"
 import { getPopularMovies, getSearchedMovies } from "../services/api"
 import type { Movie } from "../types/Movie"
+import "../css/Home.css"
 
 function Home() {
     
@@ -51,11 +52,13 @@ function Home() {
 
             {error ? <p>{error}</p>: ""}
 
-            {isLoading ? (
-                <p>Page is loading...</p>
-            ) : (
-                movies.map((movie) => (<MovieCard movie={movie} key={movie.id}/>))
-            )}
+            <div className="movie-container">
+                {isLoading ? (
+                    <p>Page is loading...</p>
+                ) : (
+                    movies.map((movie) => (<MovieCard movie={movie} key={movie.id}/>))
+                )}
+            </div>
             
         </div>
     )
