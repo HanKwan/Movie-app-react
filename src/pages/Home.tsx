@@ -11,8 +11,8 @@ function Home() {
     const [error, setError] = useState<string | null>(null)
     const [searchQuery, setSearchQuery] = useState("")
 
-    useEffect(() => {
-        const loadPopularMovies = async() => {
+    const loadPopularMovies = async() => {
+        setIsLoading(true)
             try {
                 const popularMovies = await getPopularMovies()
                 setMovies(popularMovies)
@@ -23,14 +23,21 @@ function Home() {
             } finally {
                 setIsLoading(false)
             }
-        }
+    }
 
+    useEffect(() => {
         loadPopularMovies()
     }, [])
 
     const handleSearch = async (e: React.ChangeEvent<HTMLFormElement>) => {
         e.preventDefault()
+
+        if(!searchQuery.trim()) {
+            loadPopularMovies()
+            return      // preventing to continue load search 
+        }
         
+        setIsLoading(true)
         try {
             const searchedMovies = await getSearchedMovies(searchQuery)
             setMovies(searchedMovies)
