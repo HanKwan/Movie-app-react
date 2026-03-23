@@ -1,11 +1,5 @@
 import "../css/MovieCard.css"
-
-interface Movie {
-    id: number;
-    title: string;
-    poster_path: string;
-    release_date: string;
-}
+import type { Movie } from "../types/Movie";
 
 interface MovieCardProps {
     movie: Movie;

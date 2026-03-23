@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react"
 import MovieCard from "../components/MovieCard"
 import { getPopularMovies } from "../services/api"
+import type { Movie } from "../types/Movie"
 
 function Home() {
     
-    const [movies, setMovies] = useState([])
+    const [movies, setMovies] = useState<Movie[]>([])
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState("")
 
