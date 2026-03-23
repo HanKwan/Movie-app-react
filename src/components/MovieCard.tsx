@@ -12,8 +12,8 @@ function MovieCard({ movie }: MovieCardProps) {
         <div className="movie-card">
             <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={movie.title} className="movie-img"/>
             <div className="movie-info">
-                <p className="movie-title">Movie title: {movie.title}</p>
-                <p className="release-date">Release date: {movie.release_date}</p>
+                <p className="movie-title">{movie.title}</p>
+                <p className="release-date">{movie.release_date}</p>
             </div>
         </div>
     )
