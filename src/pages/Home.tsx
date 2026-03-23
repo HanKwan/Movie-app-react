@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react"
 import MovieCard from "../components/MovieCard"
-import { getPopularMovies } from "../services/api"
+import { getPopularMovies, getSearchedMovies } from "../services/api"
 import type { Movie } from "../types/Movie"
 
 function Home() {
     
     const [movies, setMovies] = useState<Movie[]>([])
     const [isLoading, setIsLoading] = useState(true)
-    const [error, setError] = useState("")
+    const [error, setError] = useState<string | null>(null)
     const [searchQuery, setSearchQuery] = useState("")
 
     useEffect(() => {
@@ -27,10 +27,19 @@ function Home() {
         loadPopularMovies()
     }, [])
 
-    const handleSearch = (e: React.ChangeEvent<HTMLFormElement>) => {
+    const handleSearch = async (e: React.ChangeEvent<HTMLFormElement>) => {
         e.preventDefault()
         
-        alert(searchQuery)
+        try {
+            const searchedMovies = await getSearchedMovies(searchQuery)
+            setMovies(searchedMovies)
+            setError(null)
+        } catch (err) {
+            console.log(err)
+            setError("Searched movie was not found...")
+        } finally {
+            setIsLoading(false)
+        }
     }
 
     return(
