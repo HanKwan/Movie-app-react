@@ -1,3 +1,4 @@
+import { useFavorite } from "../contexts/FavoritesContext";
 import "../css/MovieCard.css"
 import type { Movie } from "../types/Movie";
 
@@ -6,7 +7,15 @@ interface MovieCardProps {
 }
 
 function MovieCard({ movie }: MovieCardProps) {
-    
+    const {favorites, addFavorite, removeFavorite, isFavorite} = useFavorite()
+
+    const handleFavorite = () => {
+        if (isFavorite(movie.id)) {
+            removeFavorite(movie.id)
+        } else {
+            addFavorite(movie)
+        }
+    }
 
     return(
         <div className="movie-card">
