@@ -1,16 +1,16 @@
-import React, { Children, createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import type { Movie } from "../types/Movie";
 
 interface FavContextType {
     favorites: Movie[];
-    addFavortie: (movieId: number) => void;
-    removeFavorite: (moiveID: number) => void;
+    addFavorite: (movie: Movie) => void;
+    removeFavorite: (moiveId: number) => void;
     isFavorite: (movieId: number) => boolean;
 }
 
 const FavoriteContext = createContext<FavContextType | null>(null)
 
-export const UseFavorite = () => useContext(FavoriteContext)
+export const useFavorite = () => useContext(FavoriteContext)
 
 export const FavoriteProvider = ({children}: {children: React.ReactNode}) => {
     const [favorites, setFavorites] = useState<Movie[]>([])
@@ -25,4 +25,22 @@ export const FavoriteProvider = ({children}: {children: React.ReactNode}) => {
     useEffect(() => {
         localStorage.setItem("favorites", JSON.stringify(favorites))
     }, [favorites])
+
+    const addFavorite = (movie: Movie) => {
+        setFavorites((prev) => [...prev, movie])
+    }
+
+    const removeFavorite = (movieId: number) => {
+        setFavorites((prev) => prev.filter((m) => m.id !== movieId))
+    }
+
+    const isFavorite = (movieId: number) => {
+        return favorites.some((movie) => movie.id === movieId )
+    }
+
+    return (
+        <FavoriteContext.Provider value={{favorites, addFavorite, removeFavorite, isFavorite}}>
+            {children}
+        </FavoriteContext.Provider>
+    )
 }
