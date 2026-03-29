@@ -25,7 +25,7 @@ function MovieCard({ movie }: MovieCardProps) {
                     alt={movie.title}
                     className="movie-img"
                 />
-                <button className="fav-btn">
+                <button className="fav-btn" onClick={handleFavorite}>
                     {isFavorite(movie.id) ? "❤️" : "🤍"}
                 </button>
             </div>
