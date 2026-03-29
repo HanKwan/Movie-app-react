@@ -1,0 +1,36 @@
+.fav-page {
+  padding: 30px;
+  min-height: 100vh;
+  background-color: #141414;
+  color: white;
+}
+
+.fav-page h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+/* Use same grid as home page */
+.movie-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 200px);
+  gap: 24px;
+  justify-content: center;
+}
+
+/* Empty state */
+.empty-fav {
+  text-align: center;
+  margin-top: 100px;
+  color: #b3b3b3;
+}
+
+.empty-fav h2 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.empty-fav p {
+  font-size: 14px;
+}

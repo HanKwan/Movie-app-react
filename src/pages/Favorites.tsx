@@ -1,6 +1,30 @@
+import MovieCard from "../components/MovieCard"
+import { useFavorite } from "../contexts/FavoritesContext"
+import "../css/FavoriteMovie.css"
+
 function Favorites() {
+    const {favorites} = useFavorite()
+    
+    if (favorites) {
+        return (
+            <div className="fav-page">
+                <h2>Your Favorite Movies</h2>
+                <div className="movie-container">
+                    {favorites.map((favMovie) => (
+                        <MovieCard movie={favMovie} key={favMovie.id}/>
+                    ))}
+                </div>
+            </div>
+        )
+    }
+
     return(
-        <p>hello from fav page</p>
+       <div className="fav-page">
+            <div className="empty-fav">
+                <h2>No Favorite Movies Yet</h2>
+                <p>Start adding some movies to your favorites ❤️</p>
+            </div>
+        </div>
     )
 }
 
