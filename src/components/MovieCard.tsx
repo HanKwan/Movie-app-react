@@ -7,7 +7,7 @@ interface MovieCardProps {
 }
 
 function MovieCard({ movie }: MovieCardProps) {
-    const {favorites, addFavorite, removeFavorite, isFavorite} = useFavorite()
+    const {addFavorite, removeFavorite, isFavorite} = useFavorite()
 
     const handleFavorite = () => {
         if (isFavorite(movie.id)) {

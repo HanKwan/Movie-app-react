@@ -5,7 +5,7 @@ import "../css/FavoriteMovie.css"
 function Favorites() {
     const {favorites} = useFavorite()
     
-    if (favorites) {
+    if (favorites.length > 0) {    // if(fav)=[] empty array return true
         return (
             <div className="fav-page">
                 <h2>Your Favorite Movies</h2>
