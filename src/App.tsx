@@ -3,6 +3,7 @@ import Home from "./pages/Home"
 import Favorites from "./pages/Favorites"
 import Navbar from "./components/Navbar"
 import { FavoriteProvider } from "./contexts/FavoritesContext"
+import MovieDetails from "./pages/MovieDetails"
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />}/>
           <Route path="/favorites" element={<Favorites />}/>
+          <Route path="/movie/:id" element={<MovieDetails />}/>
         </Routes>
       </main>
     </FavoriteProvider>

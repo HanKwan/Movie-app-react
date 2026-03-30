@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useFavorite } from "../contexts/FavoritesContext";
 import "../css/MovieCard.css"
 import type { Movie } from "../types/Movie";
@@ -20,11 +21,13 @@ function MovieCard({ movie }: MovieCardProps) {
     return(
         <div className="movie-card">
             <div className="movie-poster">
-                <img
-                    src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-                    alt={movie.title}
-                    className="movie-img"
-                />
+                <Link to={`/movie/${movie.id}`}>
+                    <img
+                        src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                        alt={movie.title}
+                        className="movie-img"
+                    />
+                </Link>
                 <button className="fav-btn" onClick={handleFavorite}>
                     {isFavorite(movie.id) ? "❤️" : "🤍"}
                 </button>
