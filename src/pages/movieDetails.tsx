@@ -3,9 +3,11 @@ import { useParams } from "react-router-dom"
 import { getMovieDetails } from "../services/api"
 import type { Movie } from "../types/Movie"
 import "../css/MovieDetails.css"
+import { useFavorite } from "../contexts/FavoritesContext"
 
 function MovieDetails() {
     const { id }= useParams()
+    const {addFavorite, removeFavorite, isFavorite} = useFavorite()
     
     const [movie, setMovie] = useState<Movie>()
     const [error, setError] = useState<string | null>(null)
@@ -30,9 +32,18 @@ function MovieDetails() {
         loadMovieDetails()
     }, [id])
 
+    
     if (loading) return <p>Loading...</p>;
     if (error) return <p>{error}</p>;
     if (!movie) return <p>No movie found</p>;
+    
+    const handleFavorite = () => {
+        if (isFavorite(Number(id))) {
+            removeFavorite(Number(id))
+        } else {
+            addFavorite(movie)
+        }
+    }
 
     return (
         <div className="details-page">
@@ -72,7 +83,7 @@ function MovieDetails() {
                     </div>
 
                     {/* Favorite button */}
-                    <button className="details-fav-btn">
+                    <button className={`details-fav-btn${isFavorite(Number(id)) ? "-favorited" : ""}`} onClick={handleFavorite}>
                         Add to Favorites
                     </button>
 
