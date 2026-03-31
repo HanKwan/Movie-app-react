@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { getMovieDetails } from "../services/api"
 import type { Movie } from "../types/Movie"
+import "../css/MovieDetails.css"
 
 function MovieDetails() {
     const { id }= useParams()
@@ -56,7 +57,7 @@ function MovieDetails() {
                     <h1 className="details-title">{movie.title}</h1>
 
                     <div className="details-meta">
-                        <span>⭐ {movie.vote_average}</span>
+                        <span>Rating: {movie.vote_average}</span>
                         <span>{movie.release_date}</span>
                         <span>{movie.runtime} min</span>
                     </div>
