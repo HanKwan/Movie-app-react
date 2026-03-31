@@ -168,7 +168,7 @@
 }
 
 /* Favorite button */
-.fav-btn {
+.details-fav-btn {
   margin-top: 10px;
   padding: 10px 14px;
   border: none;
@@ -179,8 +179,8 @@
   font-size: 14px;
 }
 
-.fav-btn:hover {
-  background-color: rgb(220, 20, 60);
+.details-fav-btn:hover {
+  background-color: rgb(172, 17, 48);
 }
 
 @media (max-width: 589px) {
@@ -204,7 +204,7 @@
     text-align: center;
   }
 
-  .fav-btn {
+  .details-fav-btn {
     width: 100%;
     max-width: 250px;
   }

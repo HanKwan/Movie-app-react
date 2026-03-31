@@ -28,7 +28,7 @@
 }
 
 /* Heart button on poster */
-.fav-btn {
+.home-fav-btn {
   position: absolute;
   top: 8px;
   right: 8px;
@@ -43,11 +43,11 @@
   transition: opacity 0.2s ease, transform 0.1s ease;
 }
 
-.movie-poster:hover .fav-btn {
+.movie-poster:hover .home-fav-btn {
   opacity: 1;
 }
 
-.fav-btn:hover {
+.home-fav-btn:hover {
   transform: scale(1.2);
 }
 

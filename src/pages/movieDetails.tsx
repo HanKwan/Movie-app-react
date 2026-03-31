@@ -72,8 +72,8 @@ function MovieDetails() {
                     </div>
 
                     {/* Favorite button */}
-                    <button className="fav-btn">
-                        ❤️ Add to Favorites
+                    <button className="details-fav-btn">
+                        Add to Favorites
                     </button>
 
                     {/* Overview */}
