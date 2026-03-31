@@ -84,7 +84,7 @@ function MovieDetails() {
 
                     {/* Favorite button */}
                     <button className={`details-fav-btn${isFavorite(Number(id)) ? "-favorited" : ""}`} onClick={handleFavorite}>
-                        Add to Favorites
+                        {isFavorite(Number(id)) ? "Remove from" : "Add to"} Favorites
                     </button>
 
                     {/* Overview */}
