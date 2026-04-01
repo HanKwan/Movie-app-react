@@ -4,6 +4,7 @@ import Favorites from "./pages/Favorites"
 import Navbar from "./components/Navbar"
 import { FavoriteProvider } from "./contexts/FavoritesContext"
 import MovieDetails from "./pages/MovieDetails"
+import "./css/App.css"
 
 function App() {
 
