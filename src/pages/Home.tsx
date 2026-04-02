@@ -13,45 +13,42 @@ function Home() {
     const [page, setPage] = useState(1)
     const [totalPage, setTotalPage] = useState(0)
 
-    const loadPopularMovies = async() => {
-        setIsLoading(true)
+    useEffect(() => {
+        const fetchMovies = async() => {
+            
+            setIsLoading(true)
             try {
-                const popularMovies = await getPopularMovies(page)
-                setMovies(popularMovies.results)
-                setTotalPage(popularMovies.total_pages)
+                let data;
+    
+                if(searchQuery.trim()) {
+                    // get search is trimmed and has value, do search
+                    data = await getSearchedMovies(searchQuery, page)
+                
+                } else {
+                    // when !searchQuery.trim()
+                    data = await getPopularMovies(page)
+                    
+                }
+
+                setMovies(data.results)
+                setTotalPage(data.total_pages)
                 setError(null)
                 
             } catch (err) {
-                console.log(err)
-                setError(err instanceof Error ? err.message : "Could not fetch movies")
+                console.log(err);
+                setError(err instanceof Error ? err.message : "Counld not fetch movies")
             } finally {
                 setIsLoading(false)
             }
-    }
 
-    useEffect(() => {
-        loadPopularMovies()
+        }
+
+        fetchMovies()
     }, [])
 
     const handleSearch = async (e: React.ChangeEvent<HTMLFormElement>) => {
         e.preventDefault()
 
-        if(!searchQuery.trim()) {
-            loadPopularMovies()
-            return      // preventing to continue load search 
-        }
-        
-        setIsLoading(true)
-        try {
-            const searchedMovies = await getSearchedMovies(searchQuery, page)
-            setMovies(searchedMovies)
-            setError(null)
-        } catch (err) {
-            console.log(err)
-            setError("Searched movie was not found...")
-        } finally {
-            setIsLoading(false)
-        }
     }
 
     return(
