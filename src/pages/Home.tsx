@@ -10,16 +10,20 @@ function Home() {
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState<string | null>(null)
     const [searchQuery, setSearchQuery] = useState("")
+    const [page, setPage] = useState(1)
+    const [totalPage, setTotalPage] = useState(0)
 
     const loadPopularMovies = async() => {
         setIsLoading(true)
             try {
-                const popularMovies = await getPopularMovies()
-                setMovies(popularMovies)
+                const popularMovies = await getPopularMovies(page)
+                setMovies(popularMovies.results)
+                setTotalPage(popularMovies.total_pages)
+                setError(null)
                 
             } catch (err) {
                 console.log(err)
-                setError("Could not fetch movies")
+                setError(err instanceof Error ? err.message : "Could not fetch movies")
             } finally {
                 setIsLoading(false)
             }
@@ -39,7 +43,7 @@ function Home() {
         
         setIsLoading(true)
         try {
-            const searchedMovies = await getSearchedMovies(searchQuery)
+            const searchedMovies = await getSearchedMovies(searchQuery, page)
             setMovies(searchedMovies)
             setError(null)
         } catch (err) {
