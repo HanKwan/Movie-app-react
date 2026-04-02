@@ -11,7 +11,8 @@ function Home() {
     const [error, setError] = useState<string | null>(null)
     const [searchQuery, setSearchQuery] = useState("")
     const [page, setPage] = useState(1)
-    const [totalPage, setTotalPage] = useState(0)
+    const [totalPages, setTotalPage] = useState(0)
+
 
     useEffect(() => {
         const fetchMovies = async() => {
@@ -30,6 +31,10 @@ function Home() {
                     
                 }
 
+                console.log(data.results);
+                console.log(data.total_pages);
+                
+
                 setMovies(data.results)
                 setTotalPage(data.total_pages)
                 setError(null)
@@ -44,11 +49,11 @@ function Home() {
         }
 
         fetchMovies()
-    }, [])
+    }, [searchQuery, page])
 
     const handleSearch = async (e: React.ChangeEvent<HTMLFormElement>) => {
         e.preventDefault()
-
+        setPage(1)  // reset page back to 1 when searched
     }
 
     return(
@@ -68,6 +73,15 @@ function Home() {
                 )}
             </div>
             
+            <div className="pagination">
+                <button onClick={() => setPage(page - 1)} disabled={page === 1}>
+                    Prev
+                </button>
+                <span>Page {page} of {totalPages}</span>
+                <button onClick={() => setPage(page + 1)} disabled={page === totalPages}>
+                    Next
+                </button>
+            </div>
         </div>
     )
 }
