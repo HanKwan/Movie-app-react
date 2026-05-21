@@ -27,9 +27,5 @@ export const getMovieDetails = async(id: string) => {
     const res = await fetch(`${BASE_URL}/movie/${id}?api_key=${API_KEY}`)
     const data = await res.json()
 
-    return {
-        results: data.results ?? [],
-        total_pages: data.total_pages ?? 0,
-        page: data.page ?? 1
-    }     
+    return data     
 }
