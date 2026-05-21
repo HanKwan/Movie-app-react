@@ -7,13 +7,15 @@ import "../css/Home.css"
 type Props = {
     searchQuery: string
     setSearchQuery: React.Dispatch<React.SetStateAction<string>>
+    inputSearch: string
+    setInputSearch: React.Dispatch<React.SetStateAction<string>>
     page: number
     setPage: React.Dispatch<React.SetStateAction<number>>
 }
 
-function Home({ searchQuery, setSearchQuery, page, setPage } : Props) {
+function Home({ searchQuery, setSearchQuery, page, setPage, inputSearch, setInputSearch } : Props) {
     const [movies, setMovies] = useState<Movie[]>([])
-    const [inputSearch, setInputSearch] = useState("")
+    
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState<string | null>(null)
     const [totalPages, setTotalPage] = useState(0)

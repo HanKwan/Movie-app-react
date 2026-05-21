@@ -9,11 +9,13 @@ import { useState } from "react"
 
 function App() {
   
-  const [searchQuery, setSearchQuery] = useState("") 
+  const [searchQuery, setSearchQuery] = useState("")
+  const [inputSearch, setInputSearch] = useState("")
   const [page, setPage] = useState(1)
 
   const handleHome = () => {
     setSearchQuery("")
+    setInputSearch("")
     setPage(1)
   }
 
@@ -25,6 +27,8 @@ function App() {
           <Route path="/" 
                 element={<Home searchQuery={searchQuery}
                                 setSearchQuery={setSearchQuery}
+                                inputSearch={inputSearch}
+                                setInputSearch={setInputSearch}
                                 page={page}
                                 setPage={setPage}/>}/>
 
