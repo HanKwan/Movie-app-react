@@ -14,8 +14,8 @@ type Props = {
 }
 
 function Home({ searchQuery, setSearchQuery, page, setPage, inputSearch, setInputSearch } : Props) {
-    const [movies, setMovies] = useState<Movie[]>([])
     
+    const [movies, setMovies] = useState<Movie[]>([])
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState<string | null>(null)
     const [totalPages, setTotalPage] = useState(0)
@@ -35,12 +35,10 @@ function Home({ searchQuery, setSearchQuery, page, setPage, inputSearch, setInpu
                 } else {
                     // when !searchQuery.trim()
                     data = await getPopularMovies(page)
-                    
                 }
 
                 console.log(data.results);
-                console.log(data.total_pages);
-                
+                console.log(data.total_pages);  
 
                 setMovies(data?.results ?? [])          // if data exists, get results, otherwise return undefined.
                 setTotalPage(data?.total_pages ?? 0)    // ?? if null or underfined, []
@@ -52,7 +50,6 @@ function Home({ searchQuery, setSearchQuery, page, setPage, inputSearch, setInpu
             } finally {
                 setIsLoading(false)
             }
-
         }
 
         fetchMovies()
@@ -60,19 +57,26 @@ function Home({ searchQuery, setSearchQuery, page, setPage, inputSearch, setInpu
 
     const handleSearch = (e: React.ChangeEvent<HTMLFormElement>) => {
         e.preventDefault()
-        setSearchQuery(inputSearch)
-        setPage(1)  // reset page back to 1 when searched
+        setSearchQuery(inputSearch) // manage the search by submit instead of type changes
+        setPage(1)                  // reset page back to 1 when searched
     }
 
     return(
         <div className="home-page">
             <form onSubmit={handleSearch} className="search">
-                <input type="text" value={inputSearch} onChange={(e) => setInputSearch(e.target.value)} className="search-box" placeholder="Search movies...."/>
+                <input type="text" 
+                        value={inputSearch} 
+                        onChange={(e) => setInputSearch(e.target.value)} 
+                        className="search-box" 
+                        placeholder="Search movies...."/>
+
                 <button type="submit">Search</button>
             </form>
 
+            {/* display error if has */}
             {error ? <p>{error}</p>: ""}
 
+            {/* movie body */}
             <div className="movie-container">
                 {isLoading ? (
                     <p>Page is loading...</p>
@@ -81,6 +85,7 @@ function Home({ searchQuery, setSearchQuery, page, setPage, inputSearch, setInpu
                 )}
             </div>
             
+            {/* bottom pages */}
             <div className="pagination">
                 <button onClick={() => setPage(page - 1)} disabled={page === 1}>
                     Prev

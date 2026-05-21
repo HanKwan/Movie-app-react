@@ -13,8 +13,8 @@ function App() {
   const [inputSearch, setInputSearch] = useState("")
   const [page, setPage] = useState(1)
 
-  const handleHome = () => {
-    setSearchQuery("")
+  const handleHome = () => {  // handleHome in app because want navbar
+    setSearchQuery("")        // to clean search query and input
     setInputSearch("")
     setPage(1)
   }
