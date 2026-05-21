@@ -11,7 +11,7 @@ export const getPopularMovies = async(page: number) => {
 export const getSearchedMovies = async(searchQuery: string, page: number) => {
     const res = await fetch(`${BASE_URL}/search/movie?api_key=${API_KEY}&query=${searchQuery}&page=${page}`)
     const data = await res.json()
-    return data.results
+    return data
 }
 
 export const getMovieDetails = async(id: string) => {
