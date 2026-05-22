@@ -19,15 +19,27 @@ export const useFavorite = () => {
 }
 
 export const FavoriteProvider = ({children}: {children: React.ReactNode}) => {
-    const [favorites, setFavorites] = useState<Movie[]>([])
+    const [favorites, setFavorites] = useState<Movie[]>(() => { // getting fav from 
+        const saved = localStorage.getItem("favorites")         // localStorage this way 
+        if(!saved) return []                                    // is cleaner
+
+        try {
+            const parsed = JSON.parse(saved)
+            return Array.isArray(parsed) ? parsed : []
+        } catch (err) {
+            return []
+        }
+    })
+
+    console.log(favorites)
 
     // getting fav movies from localstorage if have
-    useEffect(() => {
-        const storedFav = localStorage.getItem("favorites")
-        if (storedFav) {
-            setFavorites(JSON.parse(storedFav))
-        }
-    }, [])
+    // useEffect(() => {
+    //     const storedFav = localStorage.getItem("favorites")
+    //     if (storedFav) {
+    //         setFavorites(JSON.parse(storedFav))
+    //     }
+    // }, [])
 
     // adding fav to localStorage
     useEffect(() => {
