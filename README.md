@@ -60,18 +60,18 @@ npm run dev
 ```
 
 ## Screenshot
-## Home Page
+### Home Page
 
 <img src="./screenshots/home.png" width="700" />
 
-## Searching
+### Searching
 
 <img src="./screenshots/search.png" width="700" />
 
-## Favorites Page
+### Favorites Page
 
 <img src="./screenshots/favorites.png" width="700" />
 
-## Move-details Page
+### Move-details Page
 
 <img src="./screenshots/moviedetails.png" width="700" />
