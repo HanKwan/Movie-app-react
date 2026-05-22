@@ -52,13 +52,6 @@ ReactとTypeScriptを使用して開発した映画検索アプリです。
 
 ---
 
-## Run Locally
-
-```bash
-npm install
-npm run dev
-```
-
 ## Screenshot
 ### Home Page
 
@@ -75,3 +68,38 @@ npm run dev
 ### Move-details Page
 
 <img src="./screenshots/moviedetails.png" width="700" />
+
+---
+
+## Run Locally
+
+### Prerequisites
+- Node.js v18+
+- npm
+
+### Setup
+
+1. Clone the repository
+
+```bash
+git clone https://github.com/your-username/movie-app.git
+cd movie-app
+```
+
+2. Install dependencies
+
+```bash
+npm install
+```
+
+3. Create a `.env` file in the project root
+
+```env
+VITE_TMDB_API_KEY=your_api_key_here
+```
+
+4. Start the development server
+
+```bash
+npm run dev
+```
