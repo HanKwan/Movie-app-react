@@ -82,7 +82,7 @@ ReactとTypeScriptを使用して開発した映画検索アプリです。
 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/movie-app.git
+git clone https://github.com/HanKwan/Movie-app-react
 cd movie-app
 ```
 
