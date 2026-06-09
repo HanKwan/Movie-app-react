@@ -16,10 +16,13 @@ type Props = {
 function Home({ searchQuery, setSearchQuery, page, setPage, inputSearch, setInputSearch } : Props) {
     
     const [movies, setMovies] = useState<Movie[]>([])
+    const [selectedMood, setSelectedMood] = useState("all")
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState<string | null>(null)
     const [totalPages, setTotalPage] = useState(0)
 
+    console.log(selectedMood);
+    
     const moodMap = {
         scary: [27, 53],
         romantic: [10749],
@@ -80,6 +83,15 @@ function Home({ searchQuery, setSearchQuery, page, setPage, inputSearch, setInpu
 
                 <button type="submit">Search</button>
             </form>
+
+            <select value={selectedMood} onChange={(e) => setSelectedMood(e.target.value)}>
+                <option value={"all"}>All</option>
+                <option value={"scary"}>Scary</option>
+                <option value={"romantic"}>Romantic</option>
+                <option value={"exciting"}>Exciting</option>
+                <option value={"mindBending"}>Mind bending</option>
+                <option value={"feelingGood"}>Feeling good</option>
+            </select>
 
             {/* display error if has */}
             {error ? <p>{error}</p>: ""}
