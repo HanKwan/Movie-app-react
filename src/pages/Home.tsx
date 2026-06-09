@@ -20,6 +20,14 @@ function Home({ searchQuery, setSearchQuery, page, setPage, inputSearch, setInpu
     const [error, setError] = useState<string | null>(null)
     const [totalPages, setTotalPage] = useState(0)
 
+    const moodMap = {
+        scary: [27, 53],
+        romantic: [10749],
+        exciting: [28, 12],
+        mindBending: [878, 9648],
+        feelGood: [35, 10751]
+    }
+
 
     useEffect(() => {
         const fetchMovies = async() => {
